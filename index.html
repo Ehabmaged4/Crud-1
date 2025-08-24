@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentiation</title>
+    <link rel="stylesheet" href=" <link rel="stylesheet" href="
+    <link
+      rel="stylesheet"
+      href="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/normalize.css.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-dark">
+    <!-- <section>
+      <div class="container">
+        <div class="row">
+          <div class="inner">
+            <div class="caption bg-info p-4 my-4 rounded-4">
+              <h1 class="text-center">CRUD SYSTEM</h1>
+
+              <div>
+                <!-- 1 -->
+    <!-- <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="productname"
+                    placeholder="name@example.com"
+                  />
+                  <label for="productname">productname</label>
+                </div>
+                <!-- 2 -->
+    <!-- <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="productprice"
+                    placeholder=""
+                  />
+                  <label for="productprice">productprice</label>
+                </div> -->
+    <!-- 3 -->
+    <!-- <div class="form-floating mb-3">
+                  <input
+                    list="hoba"
+                    type="text"
+                    class="form-control"
+                    id="productcategory"
+                    placeholder=""
+                  />
+                  <label for="productcategory">productcategory</label>
+
+                  <datalist id="hoba">
+                    <option value="Ehab"></option>
+                    <option value="Maged">Maged</option>
+                    <option value="Ali">Ali</option>
+                  </datalist>
+                </div> -->
+    <!-- 4 -->
+    <!-- <div class="form-floating mb-3">
+                  <textarea
+                    style="height: 100px"
+                    type="text"
+                    class="form-control"
+                    id="productname"
+                    placeholder="name@example.com"
+                  ></textarea>
+
+                  <label for="productimage">productimage</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="productimage"
+                    placeholder=""
+                  />
+                  <label for="productname">productname</label>
+                </div>
+                <button onclick="test()" class="btn btn-primary btn-sm">
+                  Add Products
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container-fluid">
+        <input type="search" / class=" form-control w-50 mx-auto my-4 "
+        placeholder="search by name" >
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <img class="card-img-top" src="images/p-1.jpg" alt="Title" />
+              <div class="card-body text-center">
+                <span>index</span>
+                <h3 class="card-title">Productname</h3>
+                <p class="card-text">ProductPrice</p>
+                <p class="card-text">categry</p>
+                <p class="card-text">ProductDescription</p>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btn-outline-danger mx-4 btn-sm">
+                  Delete
+                </button>
+                <button class="btn btn-outline-warning mx-4 btn-sm">
+                  update
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>  -->
+
+    <!-- =========gdeed============= -->
+    <section>
+      <div class="container">
+        <div class="main-title bg-info p-4 my-4 rounded-4">
+          <h1 class="text-center text-uppercase">نظام تخزين بيانات</h1>
+          <div class="main-list">
+            <!-- 1 -->
+            <div class="form-floating mb-3">
+              <input
+                oninput="validationName()"
+                type="text"
+                class="form-control"
+                id="productName"
+                placeholder=""
+              />
+              <label for="productName">الأسم</label>
+
+              <p id="msgName" class="alert alert-danger d-none">
+                Please enter the first letter capitalized, at least 2
+                characters, at most 20 characters, and numbers or spaces are
+                allowed.
+              </p>
+            </div>
+            <!-- 2 -->
+            <div class="form-floating mb-3">
+              <input
+                oninput="validationPrice()"
+                type="number"
+                class="form-control"
+                id="productPrice"
+                placeholder=""
+              />
+              <label for="productPrice">السعر</label>
+              <p id="msgPrice" class="alert alert-danger d-none">
+                Please enter a valid price greater than 0.
+              </p>
+            </div>
+            <!-- 3 -->
+            <div class="form-floating mb-3">
+              <input
+                oninput="validationCategory()"
+                list="list"
+                type="text"
+                class="form-control"
+                id="productcategory"
+                placeholder=""
+              />
+              <label for="productcategory">النوع</label>
+              <p id="msgCategory" class="alert alert-danger d-none">
+                Please choose from List only
+              </p>
+            </div>
+            <datalist id="list">
+              <option value="أدوات رياضيه"></option>
+              <option value="أدوات كهربائيه"></option>
+              <option value="لوازم شغل"></option>
+              <option value="أدوات منزلية"></option>
+            </datalist>
+            <!-- 4 -->
+            <div class="form-floating mb-3">
+              <input
+                oninput="validationDescription()"
+                style="height: 100px"
+                type="text"
+                class="form-control"
+                id="productDescription"
+                placeholder=""
+              />
+              <label for="productDescription">وصف</label>
+              <p id="msgDescription" class="alert alert-danger d-none">
+                Please write any thing
+              </p>
+            </div>
+
+            <!-- 5 -->
+            <div class="form-floating mb-3 p-1">
+              <input
+                type="file"
+                accept="image/*"
+                class="form-control"
+                id="productImage"
+                placeholder=""
+              />
+              <label for="productImage">صوره</label>
+            </div>
+            <!-- button -->
+            <div class="product-btn">
+              <button
+                onclick="addProduct()"
+                id="addProduct"
+                class="btn btn-primary btn"
+              >
+                Add Product
+              </button>
+              <button
+                onclick="updateProduct()"
+                id="updateProduct"
+                class="btn btn-warning btn d-none"
+              >
+                Update Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container-fluid">
+        <input
+          oninput="searchData()"
+          id="searchInput"
+          type="search"
+          class="form-control w-50 mx-auto my-3"
+          placeholder="Search By Name ..."
+        />
+        <div id="rowData" class="row"></div>
+      </div>
+    </section>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
