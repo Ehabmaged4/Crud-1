@@ -14,27 +14,27 @@ if (localStorage.getItem("container") !== null) {
 }
 
 function addProduct() {
-  if (
-    validationName() &&
-    validationPrice() &&
-    validationCategory() &&
-    validationDescription()
-  ) {
-    var product = {
-      name: productNameInput.value,
-      price: productPriceInput.value,
-      category: productcategoryInput.value,
-      description: productDescriptionInput.value,
-      // image: "images/p-1.jpg",
-    };
-    productList.push(product);
-    localStorage.setItem("container", JSON.stringify(productList));
+  // if (
+  //   validationName() &&
+  //   validationPrice() &&
+  //   validationCategory() &&
+  //   validationDescription()
+  // ) {
+  var product = {
+    name: productNameInput.value,
+    price: productPriceInput.value,
+    category: productcategoryInput.value,
+    description: productDescriptionInput.value,
+    // image: "images/p-1.jpg",
+  };
+  productList.push(product);
+  localStorage.setItem("container", JSON.stringify(productList));
 
-    displayData();
+  displayData();
 
-    clearForm();
-  }
+  clearForm();
 }
+// }
 
 function clearForm() {
   productNameInput.value = null;
@@ -147,7 +147,7 @@ function setUbdateInfo(index) {
 // 1-update-1 :  onclick on displayData function in JS
 // 1- set parameter index , global variable currentIndex =0 , local variable here currentIndex = index
 // 2-productList[index] object set to the values of the inputs
-//3- productNameInput= productList[index].name or price , etc ...
+//3- productNameInput.value= productList[index].name or price , etc ...
 //4- make id to add and update and make global variables
 //5- Add classes >> add to add and remove d-none to update.
 function updateProduct() {
@@ -176,70 +176,70 @@ function updateProduct() {
 //7- add d-none class to btnUpdate
 
 //validation :
-function validationName() {
-  var regex = /^[A-Za-z][A-za-z0-9 ]{2,19}$/;
-  var text = productNameInput.value;
-  var msgName = document.getElementById("msgName");
-  if (regex.test(text)) {
-    productNameInput.classList.add("is-valid");
-    productNameInput.classList.remove("is-invalid");
-    msgName.classList.add("d-none");
-    return true;
-  } else {
-    productNameInput.classList.add("is-invalid");
-    productNameInput.classList.remove("is-valid");
-    msgName.classList.remove("d-none");
-    return false;
-  }
-}
+// function validationName() {
+//   var regex = /^[A-Za-z][A-za-z0-9 ]{2,19}$/;
+//   var text = productNameInput.value;
+//   var msgName = document.getElementById("msgName");
+//   if (regex.test(text)) {
+//     productNameInput.classList.add("is-valid");
+//     productNameInput.classList.remove("is-invalid");
+//     msgName.classList.add("d-none");
+//     return true;
+//   } else {
+//     productNameInput.classList.add("is-invalid");
+//     productNameInput.classList.remove("is-valid");
+//     msgName.classList.remove("d-none");
+//     return false;
+//   }
+// }
 
-function validationPrice() {
-  var regex = /^\d{1,10}(\.\d{1,3})?$/;
-  var text = productPriceInput.value;
-  var msgPrice = document.getElementById("msgPrice");
-  if (regex.test(text)) {
-    productPriceInput.classList.add("is-valid");
-    productPriceInput.classList.remove("is-invalid");
-    msgPrice.classList.add("d-none");
-    return true;
-  } else {
-    productPriceInput.classList.add("is-invalid");
-    productPriceInput.classList.remove("is-valid");
-    msgPrice.classList.remove("d-none");
-    return false;
-  }
-}
+// function validationPrice() {
+//   var regex = /^\d{1,10}(\.\d{1,3})?$/;
+//   var text = productPriceInput.value;
+//   var msgPrice = document.getElementById("msgPrice");
+//   if (regex.test(text)) {
+//     productPriceInput.classList.add("is-valid");
+//     productPriceInput.classList.remove("is-invalid");
+//     msgPrice.classList.add("d-none");
+//     return true;
+//   } else {
+//     productPriceInput.classList.add("is-invalid");
+//     productPriceInput.classList.remove("is-valid");
+//     msgPrice.classList.remove("d-none");
+//     return false;
+//   }
+// }
 
-function validationCategory() {
-  var regex = /^(أدوات رياضيه|أدوات كهربائيه|لوازم شغل|أدوات منزلية)$/;
-  var text = productcategoryInput.value;
-  var msgCategory = document.getElementById("msgCategory");
-  if (regex.test(text)) {
-    productcategoryInput.classList.add("is-valid");
-    productcategoryInput.classList.remove("is-invalid");
-    msgCategory.classList.add("d-none");
-    return true;
-  } else {
-    productcategoryInput.classList.add("is-invalid");
-    productcategoryInput.classList.remove("is-valid");
-    msgCategory.classList.remove("d-none");
-    return false;
-  }
-}
+// function validationCategory() {
+//   var regex = /^(Hand ball|Volley ball|Basket ball|Foot ball)$/;
+//   var text = productcategoryInput.value;
+//   var msgCategory = document.getElementById("msgCategory");
+//   if (regex.test(text)) {
+//     productcategoryInput.classList.add("is-valid");
+//     productcategoryInput.classList.remove("is-invalid");
+//     msgCategory.classList.add("d-none");
+//     return true;
+//   } else {
+//     productcategoryInput.classList.add("is-invalid");
+//     productcategoryInput.classList.remove("is-valid");
+//     msgCategory.classList.remove("d-none");
+//     return false;
+//   }
+// }
 
-function validationDescription() {
-  var regex = /^.{3,}$/m;
-  var text = productDescriptionInput.value;
-  var msgDescription = document.getElementById("msgDescription");
-  if (regex.test(text)) {
-    productDescriptionInput.classList.add("is-valid");
-    productDescriptionInput.classList.remove("is-invalid");
-    msgDescription.classList.add("d-none");
-    return true;
-  } else {
-    productDescriptionInput.classList.add("is-invalid");
-    productDescriptionInput.classList.remove("is-valid");
-    msgDescription.classList.remove("d-none");
-    return false;
-  }
-}
+// function validationDescription() {
+//   var regex = /^.{3,}$/m;
+//   var text = productDescriptionInput.value;
+//   var msgDescription = document.getElementById("msgDescription");
+//   if (regex.test(text)) {
+//     productDescriptionInput.classList.add("is-valid");
+//     productDescriptionInput.classList.remove("is-invalid");
+//     msgDescription.classList.add("d-none");
+//     return true;
+//   } else {
+//     productDescriptionInput.classList.add("is-invalid");
+//     productDescriptionInput.classList.remove("is-valid");
+//     msgDescription.classList.remove("d-none");
+//     return false;
+//   }
+// }
