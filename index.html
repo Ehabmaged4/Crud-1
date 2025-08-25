@@ -131,6 +131,7 @@
       <div class="container">
         <div class="main-title bg-info p-4 my-4 rounded-4">
           <h1 class="text-center text-uppercase">نظام تخزين بيانات</h1>
+          <p class="bg-success text-center p-2 fs-3">إيهاب ماجد</p>
           <div class="main-list">
             <!-- 1 -->
             <div class="form-floating mb-3">
@@ -179,10 +180,13 @@
               </p>
             </div>
             <datalist id="list">
-              <option value="Hand ball"></option>
-              <option value="Volley ball"></option>
-              <option value="Basket ball"></option>
-              <option value="Foot ball"></option>
+              <option value="السبت"></option>
+              <option value="الأحد"></option>
+              <option value="الأثنين"></option>
+              <option value="الثلاثاء"></option>
+              <option value="الأربعاء"></option>
+              <option value="الخميس"></option>
+              <option value="الجمعة"></option>
             </datalist>
             <!-- 4 -->
             <div class="form-floating mb-3">
@@ -201,7 +205,7 @@
             </div>
 
             <!-- 5 -->
-            <div class="form-floating mb-3 p-1">
+            <!-- <div class="form-floating mb-3 p-1">
               <input
                 type="file"
                 accept="image/*"
@@ -210,7 +214,7 @@
                 placeholder=""
               />
               <label for="productImage">صوره</label>
-            </div>
+            </div> -->
             <!-- button -->
             <div class="product-btn">
               <button
@@ -247,5 +251,29 @@
     </section>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/index.js"></script>
+    <!-- ......................................................... -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBF7IAgQmed0MaNr08bGpiWqR0e5mt0yoc",
+        authDomain: "crud-1-f9b86.firebaseapp.com",
+        projectId: "crud-1-f9b86",
+        storageBucket: "crud-1-f9b86.firebasestorage.app",
+        messagingSenderId: "908703489263",
+        appId: "1:908703489263:web:ae8d0f95b380c479c48f1a",
+        measurementId: "G-XD7SPRETW0",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
   </body>
 </html>

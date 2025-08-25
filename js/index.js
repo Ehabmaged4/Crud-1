@@ -243,3 +243,181 @@ function updateProduct() {
 //     return false;
 //   }
 // }
+
+//.......................................................
+var productNameInput = document.getElementById("productName");
+var productPriceInput = document.getElementById("productPrice");
+var productcategoryInput = document.getElementById("productcategory");
+var productDescriptionInput = document.getElementById("productDescription");
+var searchInput = document.getElementById("searchInput");
+var btnAdd = document.getElementById("addProduct");
+var btnUpdate = document.getElementById("updateProduct");
+var currentIndex = 0;
+var productList = [];
+
+// 🎉 الكود الذي يتحكم في صلاحية الوصول يبدأ من هنا
+var today = new Date();
+var currentMonth = today.getMonth() + 1;
+var currentYear = today.getFullYear();
+// "secret" هي الكلمة السرية الخاصة بك، يمكن تغييرها
+var correctPassword = "pop" + currentMonth + "-" + currentYear + "-" + 4;
+
+var storedPasswordInfo = JSON.parse(localStorage.getItem("accessInfo"));
+
+var hasAccess = false;
+if (storedPasswordInfo && storedPasswordInfo.password === correctPassword) {
+  hasAccess = true;
+} else {
+  var passwordAttempt = prompt("يرجى إدخال كلمة المرور الشهرية:");
+  if (passwordAttempt === correctPassword) {
+    hasAccess = true;
+    // حفظ كلمة السر في المتصفح
+    localStorage.setItem(
+      "accessInfo",
+      JSON.stringify({
+        password: correctPassword,
+      })
+    );
+  }
+}
+
+// ---------------------------------
+// 🚀 الكود الأصلي للتطبيق يعمل فقط إذا كانت قيمة hasAccess هي true
+// ---------------------------------
+if (hasAccess) {
+  if (localStorage.getItem("container") !== null) {
+    productList = JSON.parse(localStorage.getItem("container"));
+    displayData();
+  }
+
+  function addProduct() {
+    var product = {
+      name: productNameInput.value,
+      price: productPriceInput.value,
+      category: productcategoryInput.value,
+      description: productDescriptionInput.value,
+    };
+    productList.push(product);
+    localStorage.setItem("container", JSON.stringify(productList));
+    displayData();
+    clearForm();
+  }
+
+  function clearForm() {
+    productNameInput.value = null;
+    productPriceInput.value = null;
+    productcategoryInput.value = null;
+    productDescriptionInput.value = null;
+    productNameInput.classList.remove("is-valid");
+    productPriceInput.classList.remove("is-valid");
+    productcategoryInput.classList.remove("is-valid");
+    productDescriptionInput.classList.remove("is-valid");
+  }
+
+  function displayData() {
+    var cartona = "";
+    for (var i = 0; i < productList.length; i++) {
+      cartona += `
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center bg-dark text-light">
+                            <span class="index bg-info p-1 rounded-3 text-light">Index ${i}</span>
+                            <h3 class="card-title">${productList[i].name}</h3>
+                            <p class="card-text">${productList[i].price}</p>
+                            <p class="card-text">${productList[i].category}</p>
+                            <p class="card-text">${productList[i].description}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button onclick="deleteItem(${i})" class="btn btn-outline-danger btn-sm me-3"> <i class="fa-solid fa-trash"></i></button>
+                            <button onclick="setUbdateInfo(${i})" class="btn btn-outline-success btn-sm ms-3" >  <i class="fa-solid fa-pen-to-square"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+    }
+    document.getElementById("rowData").innerHTML = cartona;
+  }
+
+  function deleteItem(index) {
+    productList.splice(index, 1);
+    localStorage.setItem("container", JSON.stringify(productList));
+    displayData();
+  }
+
+  function searchData() {
+    var regex = new RegExp(searchInput.value, `gi`);
+    var term = searchInput.value.toLowerCase();
+    var cartona = "";
+    for (var i = 0; i < productList.length; i++) {
+      if (productList[i].name.toLowerCase().includes(term)) {
+        cartona += `
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center bg-dark text-light">
+                                <span class="index bg-info p-1 rounded-3 text-light">Index ${i}</span>
+                                <h3 class="card-title">${productList[
+                                  i
+                                ].name.replace(
+                                  regex,
+                                  (match) =>
+                                    `<span class="bg-info">${match}</span>`
+                                )}</h3>
+                                <p class="card-text">${productList[i].price}</p>
+                                <p class="card-text">${
+                                  productList[i].category
+                                }</p>
+                                <p class="card-text">${
+                                  productList[i].description
+                                }</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button onclick="deleteItem(${i})" class="btn btn-outline-danger btn-sm me-3"> <i class="fa-solid fa-trash"></i></button>
+                                <button onclick="setUbdateInfo(${i})" class="btn btn-outline-success btn-sm ms-3" >  <i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+      }
+    }
+    document.getElementById("rowData").innerHTML = cartona;
+  }
+
+  function setUbdateInfo(index) {
+    currentIndex = index;
+    productNameInput.value = productList[index].name;
+    productPriceInput.value = productList[index].price;
+    productcategoryInput.value = productList[index].category;
+    productDescriptionInput.value = productList[index].description;
+    btnAdd.classList.add("d-none");
+    btnUpdate.classList.remove("d-none");
+  }
+
+  function updateProduct() {
+    var product = {
+      name: productNameInput.value,
+      price: productPriceInput.value,
+      category: productcategoryInput.value,
+      description: productDescriptionInput.value,
+    };
+    productList.splice(currentIndex, 1, product);
+    displayData();
+    localStorage.setItem("container", JSON.stringify(productList));
+    btnAdd.classList.remove("d-none");
+    btnUpdate.classList.add("d-none");
+    clearForm();
+  }
+} else {
+  // 🛑 توقيف جميع الوظائف في حال عدم وجود صلاحية وصول
+  console.log("كلمة المرور خاطئة. التطبيق متوقف عن العمل.");
+  if (btnAdd) btnAdd.style.display = "none";
+  if (btnUpdate) btnUpdate.style.display = "none";
+  if (productNameInput) productNameInput.disabled = true;
+  if (productPriceInput) productPriceInput.disabled = true;
+  if (productcategoryInput) productcategoryInput.disabled = true;
+  if (productDescriptionInput) productDescriptionInput.disabled = true;
+  if (searchInput) searchInput.disabled = true;
+  var rowData = document.getElementById("rowData");
+  if (rowData) {
+    rowData.innerHTML = `<h2 class="text-center text-danger mt-5">🚫 كلمة المرور خاطئة.</h2>`;
+  }
+}
